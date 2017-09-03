@@ -1,0 +1,11 @@
+{
+  "root": true,
+  "extends": [
+    "eslint:recommended",
+    "google"
+  ],
+  "parser": "babel-eslint",
+  "rules": {
+    "comma-dangle": "off"
+  }
+}
