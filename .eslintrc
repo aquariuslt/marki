@@ -4,6 +4,11 @@
     "eslint:recommended",
     "google"
   ],
+  "env": {
+    "es6": true,
+    "node": true,
+    "browser": true
+  },
   "parser": "babel-eslint",
   "rules": {
     "comma-dangle": "off"
