@@ -1,17 +1,23 @@
 {
   "name": "@hooli/marki",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "marked based markdown compile engine, outer configuration based",
-  "main": "index.js",
+  "main": "lib/@hooli/marki.js",
   "author": "Aquariuslt<superaquariuslt@gmail.com>",
   "repository": "https://github.com/Aquariuslt/marki",
   "license": "MIT",
+  "scripts": {
+    "build": "gulp build",
+    "clean": "gulp clean",
+    "test": "gulp test"
+  },
   "dependencies": {
     "highlightjs": "^9.10.0",
     "marked": "^0.3.6"
   },
   "devDependencies": {
     "@types/node": "^8.0.26",
+    "@types/webpack": "^3.0.10",
     "babel-core": "^6.26.0",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.1.2",
@@ -23,7 +29,12 @@
     "eslint": "^4.6.0",
     "eslint-config-google": "^0.9.1",
     "gulp": "^3.9.1",
+    "gulp-rimraf": "^0.2.1",
+    "gulp-sequence": "^0.4.6",
     "gulp-util": "^3.0.8",
-    "webpack": "^3.5.5"
+    "lodash": "^4.17.4",
+    "optimize-js-plugin": "^0.0.4",
+    "webpack": "^3.5.5",
+    "webpack-merge": "^4.1.0"
   }
 }
