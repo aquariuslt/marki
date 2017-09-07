@@ -19,3 +19,8 @@ dist
 
 # Test
 coverage
+
+# Npm Publish
+.eslintrc
+gulpfile.babel.js
+tasks
