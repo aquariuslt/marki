@@ -1,6 +1,6 @@
 {
   "name": "@hooli/marki",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "marked based markdown compile engine, outer configuration based",
   "main": "lib/@hooli/marki.js",
   "author": "Aquariuslt<superaquariuslt@gmail.com>",
