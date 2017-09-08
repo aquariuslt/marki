@@ -26,3 +26,16 @@ const htmlString = marked.parser(tokens);
 
 In order to export more lifecycle hooks in parse tokens, 
 customize renderer, I hope marki can help.
+
+
+## Situations
+
+### Bundled Wrapper Enhancement
+
+#### HTML Id Generator (Support Chinese)
+#### Diagram Language Support
+#### Hide Tokens in Renderer
+
+
+### User Definition Extensions
+
