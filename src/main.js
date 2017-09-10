@@ -1,3 +1,3 @@
-import './lexer';
-import './parser';
-import './renderer';
+import marki from 'marked';
+
+export default marki;

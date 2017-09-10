@@ -26,3 +26,62 @@ const htmlString = marked.parser(tokens);
 
 In order to export more lifecycle hooks in parse tokens, 
 customize renderer, I hope marki can help.
+
+
+## Situations
+
+### Bundled Wrapper Enhancement
+
+#### HTML Id Generator (Support Chinese)
+#### Diagram Language Support
+#### Hide Tokens in Renderer
+
+
+### User Definition Extensions
+
+
+
+### API Design
+
+
+
+#### Code Example
+
+Usage 1, directly using marki bundled transform
+```
+const htmlString = marki(mdString);
+```
+
+Usage 2, using marki with options
+```
+let transformOptions = {
+  lexer:{
+    
+  },
+  parser:{
+    
+  },
+  renderer:{
+  
+  }
+};
+const htmlString = marki(mdString, transformOptions)
+```
+
+Usage 3, using customize marki wrapper and add customize options.
+```
+let myMdCompiler = new marki.Compiler();
+myMdCompiler.parser.set('xxxOptionName',false);
+myMdCompiler.parser.set('xxxOptionName','-');
+
+myMdCompiler.lexer.addFlow('flowName',function(){}, flowOptions);
+myMdCompiler.lexer.removeFlow('flowName');
+myMdCompiler.lexer.flows;
+
+
+let htmlString = myMdCompiler.compile(mdString).html;
+let compiledObject = myMdCompiler.compile(mdString);
+
+// or export 
+export default myMdCompiler;
+```
