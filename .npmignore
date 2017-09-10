@@ -23,5 +23,10 @@ coverage
 
 # Npm Publish
 .eslintrc
+.babelrc
+.editorconfig
+.coveralls.yml
+.travis.yml
+
 gulpfile.babel.js
 tasks

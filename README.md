@@ -1,6 +1,12 @@
 # marki: marked based markdown compiler wrapper
 
 
+[![Build Status](https://travis-ci.org/Aquariuslt/marki.svg)](https://travis-ci.org/Aquariuslt/marki)
+
+[![Coverage Status](https://coveralls.io/repos/github/Aquariuslt/marki/badge.svg?branch=master)](https://coveralls.io/github/Aquariuslt/marki?branch=master)
+
+
+
 ## Background
 
 When we using marked the most sample usage will look like:

@@ -7,6 +7,12 @@ import baseConfig from './base.config';
 
 let webpackProdConfig = {
   devtool: 'source-map',
+  resolve: {
+    extensions: ['.js', '.json'],
+    alias: {
+      '@': pathUtil.resolve(baseConfig.dir.src)
+    }
+  },
   entry: {
     index: './src/main.js'
   },
