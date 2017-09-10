@@ -12,7 +12,7 @@ let karmaConfig = function(config) {
     browsers: [
       'ChromiumHeadless'
     ],
-    frameworks: ['mocha'],
+    frameworks: ['mocha', 'sinon-chai'],
     reporters: ['spec', 'coverage'],
     files: [
       './specs/**/*.spec.js'
