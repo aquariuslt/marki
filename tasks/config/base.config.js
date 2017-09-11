@@ -1,7 +1,10 @@
 const baseConfig = {
   dir: {
     src: 'src',
-    dist: 'lib'
+    dist: 'lib',
+    test: {
+      unit: 'test/unit'
+    }
   }
 };
 

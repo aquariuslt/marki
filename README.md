@@ -1,6 +1,12 @@
 # marki: marked based markdown compiler wrapper
 
 
+[![Build Status](https://travis-ci.org/Aquariuslt/marki.svg)](https://travis-ci.org/Aquariuslt/marki)
+
+[![Coverage Status](https://coveralls.io/repos/github/Aquariuslt/marki/badge.svg?branch=master)](https://coveralls.io/github/Aquariuslt/marki?branch=master)
+
+
+
 ## Background
 
 When we using marked the most sample usage will look like:
@@ -39,3 +45,49 @@ customize renderer, I hope marki can help.
 
 ### User Definition Extensions
 
+
+
+### API Design
+
+
+
+#### Code Example
+
+Usage 1, directly using marki bundled transform
+```
+const htmlString = marki(mdString);
+```
+
+Usage 2, using marki with options
+```
+let transformOptions = {
+  lexer:{
+    
+  },
+  parser:{
+    
+  },
+  renderer:{
+  
+  }
+};
+const htmlString = marki(mdString, transformOptions)
+```
+
+Usage 3, using customize marki wrapper and add customize options.
+```
+let myMdCompiler = new marki.Compiler();
+myMdCompiler.parser.set('xxxOptionName',false);
+myMdCompiler.parser.set('xxxOptionName','-');
+
+myMdCompiler.lexer.addFlow('flowName',function(){}, flowOptions);
+myMdCompiler.lexer.removeFlow('flowName');
+myMdCompiler.lexer.flows;
+
+
+let htmlString = myMdCompiler.compile(mdString).html;
+let compiledObject = myMdCompiler.compile(mdString);
+
+// or export 
+export default myMdCompiler;
+```
