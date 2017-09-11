@@ -1,22 +1,14 @@
 import _ from 'lodash';
 
 /**
- * an empty function with a empty function field called 'exec'.
- * use in block iter mapping call Regex().exec .
- **/
-let noop = function() {
-};
-noop.exec = noop;
+ * empty func but with exec function
+ * */
+let emptyRegex = _.noop;
+emptyRegex.exec = _.noop;
 
-let paragraphReplacer = function(name, value) {
-  let blockParagraphRegex = /^((?:[^\n]+\n?(?!( *[-*_]){3,} *(?:\n+|$)| *(#{1,6}) *([^\n]+?) *#* *(?:\n+|$)|([^\n]+)\n *([=-]){2,} *(?:\n+ |$)|( *>[^\n]+(\n(?! *\[([^\]]+)]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?:\n+|$))[^\n]+)*\n*)+|<(?!(?:a|em|strong|small|s|cite|q|dfn|abbr|data|time|code|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo|span|br|wbr|ins|del|img)\b)\w+(?!:\/|[^\w\s@]*@)\b| *\[([^\]]+)]: *<?([^\s>]+)>?(?: +["(]([^\n]+)[")])? *(?:\n+|$)))+)\n*/;
-  let blockParagraphRegexSource = blockParagraphRegex.source;
-  value = value.source || value;
-  value = value.replace(/(^|[^\[])\^/g, '$1');
-  blockParagraphRegexSource = blockParagraphRegexSource.replace(name, value);
-  return new RegExp(blockParagraphRegexSource);
-};
-
+/**
+ * Default block regex without marked bundled GFM support.
+ * */
 let block = {
   newline: /^\n+/,
   code: /^( {4}[^\n]+\n*)+/,
@@ -31,30 +23,39 @@ let block = {
   text: /^[^\n]+/,
   bullet: /(?:[*+-]|\d+\.)/,
   item: /^( *)((?:[*+-]|\d+\.)) [^\n]*(?:\n(?!\1(?:[*+-]|\d+\.) )[^\n]*)*/gm,
-  fences: noop,
-  table: noop,
-  nptable: noop,
   _tag: '(?!(?:a|em|strong|small|s|cite|q|dfn|abbr|data|time|code|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo|span|br|wbr|ins|del|img)\\b)\\w+(?!:/|[^\\w\\s@]*@)\\b'
 };
 
 block.normal = _.merge({}, block);
 
+let inline = {
+  escape: /^\\([\\`*{}\[\]()#+\-.!_>])/,
+  autolink: /^<([^ >]+(@|:\/)[^ >]+)>/,
+  del: emptyRegex,
+  url: emptyRegex,
+  tag: /^<!--[\s\S]*?-->|^<\/?\w+(?:"[^"]*"|'[^']*'|[^'">])*?>/,
+  link: /^!?\[((?:\[[^\]]*]|[^\[\]]|](?=[^\[]*\]))*)]\(\s*<?([\s\S]*?)>?(?:\s+['"]([\s\S]*?)['"])?\s*\)/,
+  reflink: /^!?\[((?:\[[^\]]*]|[^\[\]]|](?=[^\[]*]))*)]\s*\[([^\]]*)]/,
+  nolink: /^!?\[((?:\[[^\]]*]|[^\[\]])*)]/,
+  strong: /^__([\s\S]+?)__(?!_)|^\*\*([\s\S]+?)\*\*(?!\*)/,
+  em: /^\b_((?:[^_]|__)+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,
+  code: /^(`+)\s*([\s\S]*?[^`])\s*\1(?!`)/,
+  br: /^ {2,}\n(?!\s*$)/,
+  text: /^[\s\S]+?(?=[\\<!\[_*`]| {2,}\n|$)/
+};
+
+inline.normal = _.merge({}, inline);
+
 /**
- * Marked GFM Blocks Impl
- * */
-block.gfm = _.merge({}, block.normal, {
-  fences: /^ *(`{3,}|~{3,})[ .]*(\S+)? *\n([\s\S]*?)\s*\1 *(?:\n+|$)/,
-  paragraph: /^/,
-  heading: /^ *(#{1,6}) +([^\n]+?) *#* *(?:\n+|$)/
+ * Pedantic Inline Grammar
+ */
+
+inline.pedantic = _.merge({}, inline.normal, {
+  strong: /^__(?=\S)([\s\S]*?\S)__(?!_)|^\*\*(?=\S)([\s\S]*?\S)\*\*(?!\*)/,
+  em: /^_(?=\S)([\s\S]*?\S)_(?!_)|^\*(?=\S)([\s\S]*?\S)\*(?!\*)/
 });
 
-block.gfm.paragraph = paragraphReplacer('(?!', '(?!'
-  + block.gfm.fences.source.replace('\\1', '\\2') + '|'
-  + block.list.source.replace('\\1', '\\3') + '|');
-
-block.tables = _.merge({}, block.gfm, {
-  nptable: /^ *(\S.*\|.*)\n *([-:]+ *\|[-| :]*)\n((?:.*\|.*(?:\n|$))*)\n*/,
-  table: /^ *\|(.+)\n *\|( *[-:]+[-| :]*)\n((?: *\|.*(?:\n|$))*)\n*/
-});
-
-export default block;
+export {
+  block,
+  inline
+};
