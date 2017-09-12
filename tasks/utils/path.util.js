@@ -1,4 +1,4 @@
-import * as path from 'path';
+import path from 'path';
 
 function resolve(dir) {
   return path.join(__dirname, '../..', dir);
@@ -6,4 +6,4 @@ function resolve(dir) {
 
 export default {
   resolve
-}
+};

@@ -1,3 +1,12 @@
 {
-
+  "extends": [
+    "tslint:latest",
+    "tslint-blueprint"
+  ],
+  "rules": {
+    "file-header": [
+      true,
+      "Copyright Aquariuslt 2017"
+    ]
+  }
 }

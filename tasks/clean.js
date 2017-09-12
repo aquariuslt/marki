@@ -2,7 +2,7 @@ import gulp from 'gulp';
 import gutil from 'gulp-util';
 import rimraf from 'gulp-rimraf';
 
-import baseConfig from './config/base.config';
+import baseConfig from './config/base.config.js';
 
 gulp.task('clean', function () {
   gutil.log('Deleting lib folder');
