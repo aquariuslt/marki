@@ -27,6 +27,3 @@ coverage
 .editorconfig
 .coveralls.yml
 .travis.yml
-
-gulpfile.babel.js
-tasks
