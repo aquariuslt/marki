@@ -1,3 +1,3 @@
-// import './tasks/build';
+import './tasks/build';
 import './tasks/clean';
-// import './tasks/test';
+import './tasks/test';
