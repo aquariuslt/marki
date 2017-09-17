@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/%40hooli%2Fmarki.svg)](https://badge.fury.io/js/%40hooli%2Fmarki)
 [![Build Status](https://travis-ci.org/Aquariuslt/marki.svg)](https://travis-ci.org/Aquariuslt/marki)
-[![Coverage Status](https://coveralls.io/repos/github/Aquariuslt/marki/badge.svg?branch=master)](https://coveralls.io/github/Aquariuslt/marki?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/Aquariuslt/marki/badge.svg?branch=TS)](https://coveralls.io/github/Aquariuslt/marki?branch=TS)
 
 
 
@@ -91,3 +91,4 @@ let compiledObject = myMdCompiler.compile(mdString);
 // or export 
 export default myMdCompiler;
 ```
+
