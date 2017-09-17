@@ -17,11 +17,10 @@
     ]
   },
   "include": [
-    "src/**/*",
-    "test/unit/specs/*.ts"
+    "src/**/*"
   ],
   "exclude": [
     "node_modules",
-    "test/unit/karma.conf.ts"
+    "**/*.spec.ts"
   ]
 }

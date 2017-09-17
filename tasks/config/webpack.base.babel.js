@@ -21,7 +21,7 @@ let webpackBaseConfig = {
           pathUtil.resolve(baseConfig.dir.test.unit)
         ],
         exclude: /node_modules/,
-        loader: 'awesome-typescript-loader'
+        loader: 'ts-loader'
       },
       {
         test: /\.js$/,

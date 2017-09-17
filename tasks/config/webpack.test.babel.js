@@ -10,7 +10,22 @@ let webpackTestConfig = merge(webpackBaseConfig, {
   output: {
     path: pathUtil.resolve(baseConfig.dir.dist),
     filename: `${pkg.name}.test.js`
+  },
+  module: {
+    rules: [
+      {
+        enforce: 'post',
+        test: /\.ts$/,
+        include: [
+          pathUtil.resolve(baseConfig.dir.src),
+          pathUtil.resolve(baseConfig.dir.test.unit)
+        ],
+        exclude: /node_modules/,
+        loader: 'istanbul-instrumenter-loader'
+      }
+    ]
   }
+
 });
 
 webpackTestConfig.plugins = [
