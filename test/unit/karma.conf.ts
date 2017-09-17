@@ -1,29 +1,29 @@
-import webpackTestConf from '../../tasks/config/webpack.test.babel';
+import webpackTestConf from '../../tasks/config/webpack.test.babel.js';
 
 import puppeteerPkg from 'puppeteer/package.json';
-import Downloader from 'puppeteer/utils/ChromiumDownloader';
+import Downloader from 'puppeteer/utils/ChromiumDownloader.js';
 
 const ChromiumRevision = puppeteerPkg['puppeteer']['chromium_revision'];
 const revisionInfo = Downloader.revisionInfo(Downloader.currentPlatform(), ChromiumRevision);
 process.env.CHROMIUM_BIN = revisionInfo.executablePath;
 
-let karmaConfig = function(config) {
+let karmaConfig = function (config) {
   config.set({
     browsers: [
       'ChromiumHeadless'
     ],
     frameworks: ['mocha', 'sinon-chai'],
-    reporters: ['spec', 'coverage'],
     files: [
-      './specs/**/*.spec.js'
+      './specs/**/*.spec.ts'
     ],
     preprocessors: {
-      './specs/**/*.spec.js': ['webpack', 'sourcemap']
+      './specs/**/*.spec.ts': ['webpack', 'sourcemap']
     },
     webpack: webpackTestConf,
-    webpackMiddleware: {
-      noInfo: true
-    },
+    // webpackMiddleware: {
+    //   noInfo: true,
+    // },
+    reporters: ['spec', 'coverage'],
     coverageReporter: {
       dir: './coverage',
       reporters: [

@@ -4,7 +4,7 @@ import pathUtil from '../utils/path.util';
 let webpackBaseConfig = {
   devtool: 'source-map',
   resolve: {
-    extensions: ['.js', '.ts'],
+    extensions: ['.ts', '.tsx', '.js', '.json'],
     alias: {
       '@': pathUtil.resolve(baseConfig.dir.src)
     }
@@ -15,13 +15,13 @@ let webpackBaseConfig = {
   module: {
     rules: [
       {
-        test: /\.ts$/,
+        test: /\.tsx?$/,
         include: [
           pathUtil.resolve(baseConfig.dir.src),
           pathUtil.resolve(baseConfig.dir.test.unit)
         ],
         exclude: /node_modules/,
-        loader: 'ts-loader'
+        loader: 'awesome-typescript-loader'
       },
       {
         test: /\.js$/,

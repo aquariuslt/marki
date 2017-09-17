@@ -10,7 +10,7 @@ let Server = karma.Server;
 gulp.task('test', function(done) {
   process.env.BABEL_ENV = 'test';
   new Server({
-    configFile: pathUtil.resolve(baseConfig.dir.test.unit) + '/karma.conf.babel.js',
+    configFile: pathUtil.resolve(baseConfig.dir.test.unit) + '/karma.conf.ts',
     singleRun: true
   }, done).start();
 });

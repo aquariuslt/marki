@@ -21,6 +21,7 @@
     "@types/node": "^8.0.28",
     "@types/webpack": "^3.0.10",
     "ajv": "^5.2.2",
+    "awesome-typescript-loader": "^3.2.3",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-istanbul": "^4.1.4",

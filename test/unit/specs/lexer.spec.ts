@@ -1,5 +1,6 @@
-import Lexer from '@/lexer';
 import _ from 'lodash';
+import {expect} from 'chai';
+import Lexer from '../../../src/lexer';
 
 describe('lexer', () => {
   it('should lex only 1 heading tokens default', () => {
