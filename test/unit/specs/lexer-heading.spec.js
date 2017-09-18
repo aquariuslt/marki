@@ -4,16 +4,32 @@ import Lexer from '@/lexer';
 /**
  * Lexer().lex testing
  * Test Cases from http://wowubuntu.com/markdown/ example
+ *
  * */
 describe('lexer:headings', () => {
+  /**
+   * @example
+   * ```
+   * new Lexer().lex('# Hello Title')
+   * ```
+   *
+   * @output
+   * [
+   *   {
+   *     type:'heading',
+   *     depth:1,
+   *     text: 'Hello Title'
+   *   }
+   * ]
+   * */
   it('should lex h1 heading tokens', () => {
     const mdString = '# Hello Title';
     let lexer = new Lexer();
     let tokens = lexer.lex(mdString);
 
-    expect(_.isEqual(tokens.length, 1)).to.equal(true);
-    expect(_.isEqual(_.head(tokens).type, 'heading')).to.equal(true);
-    expect(_.isEqual(_.head(tokens).depth, 1)).to.equal(true);
+    expect(tokens.length).to.equal(1);
+    expect(_.head(tokens).type).to.equal('heading');
+    expect(_.head(tokens).depth).to.equal(1);
   });
 
   it('should lex h2 heading tokens', () => {
@@ -21,9 +37,9 @@ describe('lexer:headings', () => {
     let lexer = new Lexer();
     let tokens = lexer.lex(mdString);
 
-    expect(_.isEqual(tokens.length, 1)).to.equal(true);
-    expect(_.isEqual(_.head(tokens).type, 'heading')).to.equal(true);
-    expect(_.isEqual(_.head(tokens).depth, 2)).to.equal(true);
+    expect(tokens.length).to.equal(1);
+    expect(_.head(tokens).type).to.equal('heading');
+    expect(_.head(tokens).depth).to.equal(2);
   });
 
   it('should lex h3 heading tokens', () => {
@@ -31,9 +47,9 @@ describe('lexer:headings', () => {
     let lexer = new Lexer();
     let tokens = lexer.lex(mdString);
 
-    expect(_.isEqual(tokens.length, 1)).to.equal(true);
-    expect(_.isEqual(_.head(tokens).type, 'heading')).to.equal(true);
-    expect(_.isEqual(_.head(tokens).depth, 3)).to.equal(true);
+    expect(tokens.length).to.equal(1);
+    expect(_.head(tokens).type).to.equal('heading');
+    expect(_.head(tokens).depth).to.equal(3);
   });
 
   it('should lex h4 heading tokens', () => {
@@ -41,9 +57,9 @@ describe('lexer:headings', () => {
     let lexer = new Lexer();
     let tokens = lexer.lex(mdString);
 
-    expect(_.isEqual(tokens.length, 1)).to.equal(true);
-    expect(_.isEqual(_.head(tokens).type, 'heading')).to.equal(true);
-    expect(_.isEqual(_.head(tokens).depth, 4)).to.equal(true);
+    expect(tokens.length).to.equal(1);
+    expect(_.head(tokens).type).to.equal('heading');
+    expect(_.head(tokens).depth).to.equal(4);
   });
 
   it('should lex h5 heading tokens', () => {
@@ -51,9 +67,9 @@ describe('lexer:headings', () => {
     let lexer = new Lexer();
     let tokens = lexer.lex(mdString);
 
-    expect(_.isEqual(tokens.length, 1)).to.equal(true);
-    expect(_.isEqual(_.head(tokens).type, 'heading')).to.equal(true);
-    expect(_.isEqual(_.head(tokens).depth, 5)).to.equal(true);
+    expect(tokens.length).to.equal(1);
+    expect(_.head(tokens).type).to.equal('heading');
+    expect(_.head(tokens).depth).to.equal(5);
   });
 
   it('should lex h6 heading tokens', () => {
@@ -61,9 +77,9 @@ describe('lexer:headings', () => {
     let lexer = new Lexer();
     let tokens = lexer.lex(mdString);
 
-    expect(_.isEqual(tokens.length, 1)).to.equal(true);
-    expect(_.isEqual(_.head(tokens).type, 'heading')).to.equal(true);
-    expect(_.isEqual(_.head(tokens).depth, 6)).to.equal(true);
+    expect(tokens.length).to.equal(1);
+    expect(_.head(tokens).type).to.equal('heading');
+    expect(_.head(tokens).depth).to.equal(6);
   });
 
   /**
@@ -74,7 +90,7 @@ describe('lexer:headings', () => {
    * This is an H1
    * =============
    * `
-   * @output
+   * @html
    * <h1>This is an H1</h1>
    * */
   it('should lex h1 heading tokens from setext mode', () => {
@@ -82,9 +98,9 @@ describe('lexer:headings', () => {
     let lexer = new Lexer();
     let tokens = lexer.lex(mdString);
 
-    expect(_.isEqual(tokens.length, 1)).to.equal(true);
-    expect(_.isEqual(_.head(tokens).type, 'heading')).to.equal(true);
-    expect(_.isEqual(_.head(tokens).depth, 1)).to.equal(true);
+    expect(tokens.length).to.equal(1);
+    expect(_.head(tokens).type).to.equal('heading');
+    expect(_.head(tokens).depth).to.equal(1);
   });
 
   /**
@@ -103,9 +119,9 @@ describe('lexer:headings', () => {
     let lexer = new Lexer();
     let tokens = lexer.lex(mdString);
 
-    expect(_.isEqual(tokens.length, 1)).to.equal(true);
-    expect(_.isEqual(_.head(tokens).type, 'heading')).to.equal(true);
-    expect(_.isEqual(_.head(tokens).depth, 2)).to.equal(true);
+    expect(tokens.length).to.equal(1);
+    expect(_.head(tokens).type).to.equal('heading');
+    expect(_.head(tokens).depth).to.equal(2);
   });
 
   /**
@@ -123,8 +139,8 @@ describe('lexer:headings', () => {
     let lexer = new Lexer();
     let tokens = lexer.lex(mdString);
 
-    expect(_.isEqual(tokens.length, 1)).to.equal(true);
-    expect(_.isEqual(_.head(tokens).type, 'heading')).to.equal(true);
-    expect(_.isEqual(_.head(tokens).depth, 1)).to.equal(true);
+    expect(tokens.length).to.equal(1);
+    expect(_.head(tokens).type).to.equal('heading');
+    expect(_.head(tokens).depth).to.equal(1);
   });
 });

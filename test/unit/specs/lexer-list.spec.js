@@ -10,9 +10,9 @@ describe('lexer:lists', () => {
     let lexer = new Lexer();
     let tokens = lexer.lex(mdString);
 
-    expect(_.isEqual(tokens.length, 5)).to.eq(true);
-    expect(_.isEqual(_.head(tokens).ordered, false)).to.eq(true);
-    expect(_.isEqual(_.head(tokens).type,'list_start')).to.eq(true);
+    expect(tokens.length).to.eq(5);
+    expect(_.head(tokens).ordered).to.eq(false);
+    expect(_.head(tokens).type).to.eq('list_start');
   });
 
   it('should be lex * as unordered list', () => {
@@ -31,13 +31,5 @@ describe('lexer:lists', () => {
 
   it('should be lex - as unordered list', () => {
   });
-
-  it('', () => {
-  });
-
-  it('', () => {
-  });
-
-  it('', () => {
-  });
+  
 });

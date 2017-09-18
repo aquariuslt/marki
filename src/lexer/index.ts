@@ -1,4 +1,5 @@
 import * as marked from 'marked';
+import {TokensList} from '../shared/token';
 
 
 export default class Lexer {

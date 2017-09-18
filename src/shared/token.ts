@@ -1,4 +1,6 @@
-declare type Token =
+import * as Tokens from 'shared/tokens';
+
+export type Token =
   Tokens.Space
   | Tokens.Code
   | Tokens.Heading
@@ -16,7 +18,7 @@ declare type Token =
   | Tokens.Text;
 
 
-declare type TokensList = Token[] & {
+export type TokensList = Token[] & {
   links: {
     [key: string]: { href: string; title: string; }
   }
