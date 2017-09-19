@@ -17,5 +17,4 @@ export default class Lexer {
     return $this.lexer.lex(source);
   }
 
-
 }
