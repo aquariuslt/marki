@@ -30,5 +30,14 @@ describe('lexer:code', () => {
     expect(_.head(tokens).type).to.eq('code');
   });
 
-  // TODO: add ```support```
+  it('should be using broken-line block to setup code blocks',()=>{
+    const mdString =`\`\`\`\ntell application "Foo"\n\t\tbeep\n\tend tell\n\`\`\`\n`;
+
+    let lexer = new Lexer();
+    let tokens = lexer.lex(mdString);
+
+    expect(tokens.length).to.eq(1);
+    expect(_.head(tokens).type).to.eq('code');
+  });
+
 });
