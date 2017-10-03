@@ -54,12 +54,12 @@ customize renderer, I hope marki can help.
 #### Code Example
 
 Usage 1, directly using marki bundled transform
-```
+```javascript
 const htmlString = marki(mdString);
 ```
 
 Usage 2, using marki with options
-```
+```javascript
 let transformOptions = {
   lexer:{
     
@@ -75,7 +75,7 @@ const htmlString = marki(mdString, transformOptions)
 ```
 
 Usage 3, using customize marki wrapper and add customize options.
-```
+```javascript
 let myMdCompiler = new marki.Compiler();
 myMdCompiler.parser.set('xxxOptionName',false);
 myMdCompiler.parser.set('xxxOptionName','-');

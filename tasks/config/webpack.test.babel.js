@@ -21,6 +21,15 @@ let webpackTestConfig = merge(webpackBaseConfig, {
         ],
         exclude: /node_modules/,
         loader: 'istanbul-instrumenter-loader'
+      },
+      {
+        enforce: 'post',
+        test: /\.js$/,
+        include: [
+          pathUtil.resolve(baseConfig.dir.src)
+        ],
+        exclude: /node_modules/,
+        loader: 'istanbul-instrumenter-loader'
       }
     ]
   }

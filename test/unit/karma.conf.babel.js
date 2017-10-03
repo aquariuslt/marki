@@ -28,17 +28,17 @@ let karmaConfig = function(config) {
     },
     reporters: ['spec', 'coverage-istanbul'],
     coverageIstanbulReporter: {
-      dir: pathUtil.resolve(baseConfig.dir.test.unit)+ '/coverage',
+      dir: pathUtil.resolve(baseConfig.dir.test.unit) + '/coverage',
       reports: ['html', 'lcovonly', 'text-summary'],
       fixWebpackSourcePaths: true,
       skipFilesWithNoCoverage: true,
       thresholds: {
         emitWarning: false,
         global: {
-          statements: 80,
-          lines: 80,
-          branches: 80,
-          functions: 80
+          statements: 50,
+          lines: 50,
+          branches: 50,
+          functions: 50
         }
       }
     }

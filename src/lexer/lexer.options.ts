@@ -1,3 +1,0 @@
-declare interface LexerOptions {
-  
-}
