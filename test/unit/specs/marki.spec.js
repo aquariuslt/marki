@@ -1,14 +1,10 @@
-import {omarki, marki} from '@/main';
+import {MarkiContext} from '@/main';
 
-describe('marki', () => {
-  it('marki direct compile', () => {
-    const mdString = `[This link](http://example.net/) has no title attribute.`;
+describe('marki', function() {
 
-    let markedHtmlString = omarki(mdString);
-    let markiHtmlString = marki(mdString);
-
-    // console.log(markedHtmlString);
-    // console.log(markiHtmlString);
-    expect(markedHtmlString).to.eq(markiHtmlString);
+  it('# should load marked correctly', function() {
+    let markiContext = new MarkiContext();
+    let compiled = markiContext.compile('# Hello');
+    expect(compiled).to.eq(`<h1 id="hello">Hello</h1>\n`);
   });
 });
