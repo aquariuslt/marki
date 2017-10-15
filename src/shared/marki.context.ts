@@ -1,21 +1,15 @@
 import * as marked from 'marked';
-
-interface MarkiOptions {
-
-}
-
-interface CodeFilter {
-  language: string;
-}
-
-interface CodeHandler {
-  language: string;
-  handler: Function;
-}
+import * as _ from 'lodash';
 
 export default class MarkiContext {
   source: string;                 // markdown source
   html?: string;                  // compiled html
+
+
+  private tokens?: Array<Token>;           // original tokens
+  private filteredTokens?: Array<Token>;   // filtered tokens
+  private needHandleTokens ?: Array<Token>;// non-handled tokens
+  private handledTokens?: Array<Token>;    // handled tokens
 
   markiOptions?: MarkiOptions;    // marki options
 
@@ -28,11 +22,62 @@ export default class MarkiContext {
     $this.markiOptions = options || {};
     $this.codeFilters = [];
     $this.codeHandlers = [];
+
+    // intern level marked object
+    $this.initTokens();
   }
 
-  addCodeFilters(language: string) {
+
+  private initTokens() {
     let $this = this;
-    $this.codeFilters.push({language: language});
+    $this.tokens = [];
+    $this.needHandleTokens = [];
+    $this.handledTokens = [];
+    $this.filteredTokens = [];
+  }
+
+  private handleTokens(source: string) {
+    let $this = this;
+    let lexer = new marked.Lexer();
+    $this.tokens = lexer.lex(source);
+
+    $this.doFilter();
+    $this.doHandleCustomizeCodeType();
+  }
+
+  private doFilter() {
+    let $this = this;
+
+    _.each($this.codeFilters, function (needFilteredCode) {
+      let {language} = needFilteredCode;
+      let needFilterTokenPredict = {
+        type: 'code',
+        lang: language
+      };
+
+      let needFilterTokens = _.filter($this.tokens, needFilterTokenPredict);
+      $this.filteredTokens = $this.filteredTokens.concat(needFilterTokens);
+      _.each(needFilterTokens, function (needFilterToken) {
+        _.remove($this.tokens, needFilterToken);
+      });
+
+      if (!_.isUndefined(needFilteredCode.handle) && needFilteredCode.handle) {
+        $this.needHandleTokens = $this.needHandleTokens.concat(needFilterTokens);
+      }
+    });
+
+  }
+
+  private doHandleCustomizeCodeType() {
+    // perform pre-handle
+
+    // perform handle
+  }
+
+  /* export level functions */
+  addCodeFilters(filterCode: CodeFilter) {
+    let $this = this;
+    $this.codeFilters.push(filterCode);
   }
 
   addCodeHandlers(language: string, handlerFn: Function) {
@@ -46,7 +91,12 @@ export default class MarkiContext {
   compile(source: string) {
     let $this = this;
     $this.source = source;
-    $this.html = marked(source);
+
+    $this.handleTokens(source);
+
+
+    $this.html = marked.parser($this.tokens);
+
     return $this.html;
   }
 }

@@ -14,6 +14,14 @@ let webpackTestConfig = merge(webpackBaseConfig, {
   module: {
     rules: [
       {
+        test: /\.md$/,
+        include: [
+          pathUtil.resolve(baseConfig.dir.test.unit)
+        ],
+        exclude: /node_modules/,
+        loader: 'raw-loader'
+      },
+      {
         enforce: 'post',
         test: /\.ts$/,
         include: [
