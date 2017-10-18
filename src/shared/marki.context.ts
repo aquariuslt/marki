@@ -41,11 +41,11 @@ export default class MarkiContext {
     let lexer = new marked.Lexer();
     $this.tokens = lexer.lex(source);
 
-    $this.doFilter();
+    $this.doCodeFilter();
     $this.doHandleCustomizeCodeType();
   }
 
-  private doFilter() {
+  private doCodeFilter() {
     let $this = this;
 
     _.each($this.codeFilters, function (needFilteredCode) {
@@ -69,18 +69,26 @@ export default class MarkiContext {
   }
 
   private doHandleCustomizeCodeType() {
-    // perform pre-handle
-
     // perform handle
+    let $this = this;
+
+    let groupByLanguageCodeHandlers = _.groupBy($this.codeHandlers,function (handler) {
+      return handler.language;
+    });
+
+
+    _.each($this.needHandleTokens,function (token) {
+
+    });
   }
 
   /* export level functions */
-  addCodeFilters(filterCode: CodeFilter) {
+  public addCodeFilters(filterCode: CodeFilter) {
     let $this = this;
     $this.codeFilters.push(filterCode);
   }
 
-  addCodeHandlers(language: string, handlerFn: Function) {
+  public addCodeHandlers(language: string, handlerFn: Function) {
     let $this = this;
     $this.codeHandlers.push({
       language: language,
