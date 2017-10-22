@@ -9,7 +9,7 @@ install:
 
 
 before_script:
-  - yarn add global gulp
+  - yarn global add gulp
 
 script: yarn run test
 
