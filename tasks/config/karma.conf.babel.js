@@ -1,4 +1,6 @@
-import webpackTestConf from '../../tasks/config/webpack.test.babel';
+import baseConfig from './base.config';
+import webpackTestConf from './webpack.test.babel';
+import pathUtil from '../utils/path.util';
 
 import puppeteerPkg from 'puppeteer/package.json';
 import Downloader from 'puppeteer/utils/ChromiumDownloader';
@@ -12,10 +14,10 @@ let karmaConfig = function(config) {
     browsers: [
       'ChromiumHeadless'
     ],
-    frameworks: ['mocha', 'sinon-chai'],
+    frameworks: ['mocha', 'sinon', 'chai'],
     reporters: ['spec', 'coverage'],
     files: [
-      './specs/**/*.spec.js'
+      pathUtil.resolve(baseConfig.dir.test.unit) + '/specs/**/*.spec.js'
     ],
     preprocessors: {
       './specs/**/*.spec.js': ['webpack', 'sourcemap']
