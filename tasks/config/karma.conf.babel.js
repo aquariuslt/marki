@@ -27,7 +27,7 @@ let karmaConfig = function(config) {
       noInfo: true
     },
     coverageReporter: {
-      dir: './coverage',
+      dir: pathUtil.resolve('test/unit') + '/coverage',
       reporters: [
         {type: 'lcovonly', subdir: '.'},
         {type: 'text-summary'}
