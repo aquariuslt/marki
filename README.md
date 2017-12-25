@@ -7,17 +7,16 @@
 
 
 
-## Background
+### Install Dependencies
 
-When we using marked the most sample usage will look like:
-
-```js
-const mdString =   '# Hello Marked';
-const htmlString = marked(mdString);
+Windows 
+```bash
+SET PUPPETEER_DOWNLOAD_HOST=https://storage.googleapis.com.cnpmjs.org
+npm i
 ```
 
-
-If we need advanced usage, from the marked source code and document.
-
-We will see like that
-
+Unix
+```bash
+export PUPPETEER_DOWNLOAD_HOST=https://storage.googleapis.com.cnpmjs.org
+npm i
+```
