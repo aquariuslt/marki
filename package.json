@@ -2,14 +2,17 @@
   "name": "@aexo/marki",
   "version": "1.0.5",
   "description": "marked based markdown compile engine, outer configuration based",
-  "main": "lib/@aexo/marki.js",
+  "main": "lib/@aexo/marki.cjs.js",
+  "module": "lib/@aexo/marki.esm.js",
+  "browser": "lib/@aexo/marki.umd.js",
   "author": "Aquariuslt<superaquariuslt@gmail.com>",
   "repository": "https://github.com/Aquariuslt/marki",
   "license": "MIT",
   "scripts": {
     "build": "gulp build",
     "clean": "gulp clean",
-    "test": "gulp test"
+    "test": "gulp test",
+    "rollup": "rollup -c tasks/config/rollup.config.js"
   },
   "devDependencies": {
     "@babel/register": "^7.0.0-beta.36",
@@ -22,6 +25,7 @@
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.1.2",
     "babel-loader": "^7.1.2",
+    "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-istanbul": "^4.1.4",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.0",
@@ -53,6 +57,10 @@
     "mocha-lcov-reporter": "^1.3.0",
     "optimize-js-plugin": "^0.0.4",
     "puppeteer": "^0.13.0",
+    "rollup": "^0.53.0",
+    "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-commonjs": "^8.2.6",
+    "rollup-plugin-node-resolve": "^3.0.0",
     "sinon": "^4.1.3",
     "webpack": "^3.10.0",
     "webpack-merge": "^4.1.1"
