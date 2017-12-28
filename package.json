@@ -57,6 +57,7 @@
     "optimize-js-plugin": "^0.0.4",
     "puppeteer": "^0.13.0",
     "rollup": "^0.53.0",
+    "rollup-plugin-alias": "^1.4.0",
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-commonjs": "^8.2.6",
     "rollup-plugin-node-resolve": "^3.0.0",
