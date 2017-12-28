@@ -3,16 +3,9 @@ node_js:
   - "6"
   - "8"
 
-cache: yarn
-
-install:
-  - yarn
 
 
-before_script:
-  - yarn global add gulp
-
-script: yarn run build && yarn run test
+script: npm run build && npm run test
 
 # Submit Coverage Status to coveralls.io
 after_script:
