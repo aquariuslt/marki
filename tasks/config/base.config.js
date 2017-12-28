@@ -8,4 +8,4 @@ const baseConfig = {
   }
 };
 
-export default baseConfig;
+export default baseConfig
