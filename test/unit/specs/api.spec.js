@@ -1,7 +1,7 @@
 // for api unittest and simple assert, we use dist folder for testing
 // remember to run packer to here
 
-import marki from '@/main';
+import marki from '#/@aexo/marki';
 import _ from 'lodash';
 
 describe('api', () => {
