@@ -1,6 +1,6 @@
 {
   "name": "@aexo/marki",
-  "version": "1.0.5",
+  "version": "0.0.1",
   "description": "marked based markdown compile engine, outer configuration based",
   "main": "lib/@aexo/marki.cjs.js",
   "module": "lib/@aexo/marki.esm.js",
