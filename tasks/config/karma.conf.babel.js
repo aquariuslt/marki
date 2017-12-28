@@ -1,5 +1,5 @@
 import baseConfig from './base.config';
-import webpackTestConf from './webpack.test.babel';
+import webpackTestConfig from './webpack.test.babel';
 import pathUtil from '../utils/path.util';
 
 import puppeteerPkg from 'puppeteer/package.json';
@@ -20,9 +20,9 @@ let karmaConfig = function(config) {
       pathUtil.resolve(baseConfig.dir.test.unit) + '/specs/**/*.spec.js'
     ],
     preprocessors: {
-      './specs/**/*.spec.js': ['webpack', 'sourcemap']
+      '/**/*.spec.js': ['webpack', 'sourcemap']
     },
-    webpack: webpackTestConf,
+    webpack: webpackTestConfig,
     webpackMiddleware: {
       noInfo: true
     },

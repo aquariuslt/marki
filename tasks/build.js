@@ -5,7 +5,7 @@ import sequence from 'gulp-sequence';
 import webpack from 'webpack';
 
 import webpackProdConfig from './config/webpack.prod.babel';
-import webpackDebugConfig from './config/webpack.debug.babel';
+import webpackTestConfig from './config/webpack.test.babel';
 
 gulp.task('webpack:prod', function(done) {
   gutil.log('Bundling the bundled resources.');
@@ -15,20 +15,20 @@ gulp.task('webpack:prod', function(done) {
       gutil.log('Webpack build error:', error);
       throw new gutil.PluginError('webpack', error);
     }
-    gutil.log(stats.toString(webpackProdConfig.stats));
+    gutil.log(stats.toString(webpackTestConfig.stats));
     done();
   });
 });
 
 gulp.task('webpack:debug', function(done) {
   gutil.log('Bundling the debug level resources.');
-  webpack(webpackDebugConfig, function(error, stats) {
+  webpack(webpackTestConfig, function(error, stats) {
     gutil.log('Webpack build done');
     if (error) {
       gutil.log('Webpack build error:', error);
       throw new gutil.PluginError('webpack', error);
     }
-    gutil.log(stats.toString(webpackDebugConfig.stats));
+    gutil.log(stats.toString(webpackTestConfig.stats));
     done();
   });
 });

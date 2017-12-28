@@ -1,18 +1,14 @@
-import * as webpack from 'webpack';
+import webpack from 'webpack';
+import merge from 'webpack-merge';
 
 import pkg from '../../package.json';
 import pathUtil from '../utils/path.util';
 
 import baseConfig from './base.config';
+import webpackBaseConfig from './webpack.base.babel';
 
-let webpackProdConfig = {
+let webpackProdConfig = merge(webpackBaseConfig, {
   devtool: 'source-map',
-  resolve: {
-    extensions: ['.js', '.json'],
-    alias: {
-      '@': pathUtil.resolve(baseConfig.dir.src)
-    }
-  },
   entry: {
     index: './src/main.js'
   },
@@ -21,15 +17,6 @@ let webpackProdConfig = {
     library: pkg.name,
     libraryTarget: 'umd',
     filename: `${pkg.name}.min.js`
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        include: [pathUtil.resolve(baseConfig.dir.src)],
-        loader: 'babel-loader'
-      }
-    ]
   },
   plugins: [
     new webpack.DefinePlugin({
@@ -44,21 +31,7 @@ let webpackProdConfig = {
       sourceMap: true
     }),
     new webpack.optimize.OccurrenceOrderPlugin(true)
-  ],
-  stats: {
-    colors: true,
-    hash: true,
-    timings: true,
-    chunks: true,
-    chunkModules: false,
-    chunksSort: 'name',
-    children: false,
-    modules: false,
-    reasons: false,
-    warnings: true,
-    assets: false,
-    version: false
-  }
-};
+  ]
+});
 
 export default webpackProdConfig;

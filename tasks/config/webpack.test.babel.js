@@ -1,18 +1,16 @@
-import * as webpack from 'webpack';
+import webpack from 'webpack';
 import merge from 'webpack-merge';
 
-import webpackProdConfig from './webpack.prod.babel';
+import webpackBaseConfig from './webpack.base.babel';
 
-let webpackTestConfig = merge(webpackProdConfig, {});
-
-webpackTestConfig.plugins = [
-  new webpack.DefinePlugin({
-    'process.env': {
-      NODE_ENV: '"testing"'
-    }
-  })
-];
-
-delete webpackTestConfig.entry;
-delete webpackTestConfig.output;
+let webpackTestConfig = merge(webpackBaseConfig, {
+  devtool: 'eval-source-map',
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"test"'
+      }
+    })
+  ]
+});
 export default webpackTestConfig;
