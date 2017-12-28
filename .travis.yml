@@ -1,6 +1,7 @@
 language: node_js
 node_js:
   - "6"
+  - "8"
 
 cache: yarn
 
@@ -11,7 +12,7 @@ install:
 before_script:
   - yarn global add gulp
 
-script: yarn run test
+script: yarn run build && yarn run test
 
 # Submit Coverage Status to coveralls.io
 after_script:
