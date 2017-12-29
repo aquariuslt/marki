@@ -3,7 +3,8 @@ node_js:
   - "6"
   - "8"
 
-
+before_script:
+  - npm install npm -g
 
 script: npm run build && npm run test
 
