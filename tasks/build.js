@@ -1,5 +1,5 @@
 import gulp from 'gulp';
-import gutil from 'gulp-util';
+import log from 'fancy-log';
 import sequence from 'gulp-sequence';
 import _ from 'lodash';
 
@@ -11,27 +11,25 @@ import webpackTestConfig from './config/webpack.test.babel';
 import rollupConfig from './config/rollup.config';
 
 gulp.task('webpack:prod', function(done) {
-  gutil.log('Bundling the bundled resources.');
+  log.info('Bundling the bundled resources.');
   webpack(webpackProdConfig, function(error, stats) {
-    gutil.log('Webpack build done');
+    log.info('Webpack build done');
     if (error) {
-      gutil.log('Webpack build error:', error);
-      throw new gutil.PluginError('webpack', error);
+      log.error('Webpack build error:', error);
     }
-    gutil.log(stats.toString(webpackTestConfig.stats));
+    log.info(stats.toString(webpackTestConfig.stats));
     done();
   });
 });
 
 gulp.task('webpack:debug', function(done) {
-  gutil.log('Bundling the debug level resources.');
+  log.info('Bundling the debug level resources.');
   webpack(webpackTestConfig, function(error, stats) {
-    gutil.log('Webpack build done');
+    log.info('Webpack build done');
     if (error) {
-      gutil.log('Webpack build error:', error);
-      throw new gutil.PluginError('webpack', error);
+      log.error('Webpack build error:', error);
     }
-    gutil.log(stats.toString(webpackTestConfig.stats));
+    log.info(stats.toString(webpackTestConfig.stats));
     done();
   });
 });

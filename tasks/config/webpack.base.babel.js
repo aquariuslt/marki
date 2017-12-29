@@ -15,9 +15,13 @@ let webpackBaseConfig = {
         test: /\.js$/,
         include: [
           pathUtil.resolve(baseConfig.dir.src),
-          pathUtil.resolve('test/unit/specs')
+          pathUtil.resolve(baseConfig.dir.test.unit)
         ],
         loader: 'babel-loader'
+      },
+      {
+        test: /\.md$/,
+        loader: 'file-loader'
       }
     ]
   },

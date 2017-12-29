@@ -1,27 +1,42 @@
+import MarkiConfig from './options/marki.config';
 import marked from 'marked';
+import metadataRule from './options/internal/metadata';
 
 let marki = marked;
-marki.loadConfig = loadConfig;
+marki.load = load;
 marki.set = set;
-
-let context = initMarkiContext();
+marki.context = initContext();
+marki.load(internalConfig());
 
 /**
  * @return {MarkiContext}
  * */
-function initMarkiContext() {
-  return {};
+function initContext() {
+  return {
+    source: '',
+    html: '',
+    config: [],
+    modules: [],
+    tokens: []
+  };
 }
 
-function resetMarkiContext() {
-  context = {};
+function internalConfig() {
+  return new MarkiConfig({
+    modules: [
+      metadataRule
+    ]
+  });
 }
 
 /**
  * @param {MarkiConfig} markiConfig
  * */
-function loadConfig(markiConfig) {
-  resetMarkiContext();
+function load(markiConfig) {
+  updateContext({
+    config: markiConfig,
+    modules: markiConfig.modules
+  });
 }
 
 /**
@@ -30,6 +45,13 @@ function loadConfig(markiConfig) {
  * */
 function set(key, value) {
 
+}
+
+/**
+ * @param {MarkiContext} context
+ * */
+function updateContext(context) {
+  marki.context = context;
 }
 
 export default marki;
